@@ -338,7 +338,7 @@ app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken;
 
   const spotifyAPI = new SpotifyWebApi({
-    redirectUri: "http://localhost:3000",
+    redirectUri: "https://sharejams.herokuapp.com/",
     clientId: "dfe1eb532747437b9b7d84a113a3933f",
     clientSecret: process.env.CLIENT_SECRET,
     refreshToken,
