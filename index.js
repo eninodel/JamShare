@@ -224,7 +224,10 @@ async function getTopPosts() {
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use("/static", express.static(path.join(__dirname, "Frontend", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "Frontend", "build", "index.html"));
+});
 
 app.get("/topPosts", (req, res) => {
   getTopPosts()
@@ -377,10 +380,6 @@ app.post("/login", (req, res) => {
     .catch((err) => {
       res.sendStatus(400);
     });
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "Frontend", "build", "index.html"));
 });
 
 app.listen(port, () => {
