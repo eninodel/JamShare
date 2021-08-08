@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const SpotifyWebApi = require("spotify-web-api-node");
 const { MongoClient, ObjectId } = require("mongodb");
 const path = require("path");
-// require("dotenv").config({ path: "./process.env" });
-require("dotenv").config();
+require("dotenv").config({ path: "./process.env" });
+// require("dotenv").config();
 
 const port = process.env.PORT || 8000;
 
