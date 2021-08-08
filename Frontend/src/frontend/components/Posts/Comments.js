@@ -18,7 +18,7 @@ function Comments({
     );
     setPostComments(newComments);
     axios
-      .post("http://localhost:8000/deleteComment", { commentId })
+      .post("/deleteComment", { commentId })
       .then((res) => {
         console.log(res);
       })

@@ -11,7 +11,7 @@ function Login() {
         <button onClick={() => (window.location.href = AUTH_URL)}>
           Login with Spotify
         </button>
-        <a href="http://localhost:3000/?code=guest">
+        <a href="/?code=guest">
           Continue without logging in
           <br />
           (Limited experience)

@@ -11,7 +11,7 @@ function DisplayPosts({ extension, setDisplayPosts }) {
 
   useEffect(() => {
     if (!accessToken) return null;
-    const URL = "http://localhost:8000/" + extension;
+    const URL = "/" + extension;
     axios
       .get(URL)
       .then((res) => {

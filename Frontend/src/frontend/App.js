@@ -57,7 +57,7 @@ function App() {
         };
       })
       .then((data) => {
-        const getURL = "http://localhost:8000/lookUpUser?userId=" + data.userId;
+        const getURL = "/lookUpUser?userId=" + data.userId;
         axios
           .get(getURL)
           .then((res) => {
@@ -81,7 +81,7 @@ function App() {
           })
           .then((data) => {
             axios
-              .post("http://localhost:8000/addUser", {
+              .post("/addUser", {
                 userId: data.userId,
                 user: data.user,
                 userProfilePic: data.userProfilePic,

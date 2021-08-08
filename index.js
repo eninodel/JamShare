@@ -5,13 +5,12 @@ const bodyParser = require("body-parser");
 const SpotifyWebApi = require("spotify-web-api-node");
 const { MongoClient, ObjectId } = require("mongodb");
 const path = require("path");
-// require("dotenv").config({ path: "./process.env" }); development
+// require("dotenv").config({ path: "./process.env" });
 require("dotenv").config();
 
 const port = process.env.PORT || 8000;
 
 const uri = process.env.MONGODB_URI;
-console.log(uri);
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -361,7 +360,7 @@ app.post("/refresh", (req, res) => {
 app.post("/login", (req, res) => {
   const code = req.body.code;
   const spotifyAPI = new spotifyWebAPI({
-    redirectUri: "http://localhost:3000",
+    redirectUri: "https://sharejams.herokuapp.com/",
     clientId: "dfe1eb532747437b9b7d84a113a3933f",
     clientSecret: process.env.CLIENT_SECRET,
   });

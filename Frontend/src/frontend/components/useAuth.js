@@ -18,7 +18,7 @@ export default function UseAuth(code) {
       return;
     }
     axios
-      .post("http://localhost:8000/login", { code })
+      .post("/login", { code })
       .then((res) => {
         Cookies.set("accessToken", res.data.accessToken, { expires: 1 / 24 });
         setAccessToken(res.data.accessToken);
@@ -35,7 +35,7 @@ export default function UseAuth(code) {
     if (!refreshToken || !expiresIn || accessToken === "guest") return;
     const timeout = setInterval(() => {
       axios
-        .post("http://localhost:8000/refresh", {
+        .post("/refresh", {
           refreshToken,
         })
         .then((res) => {

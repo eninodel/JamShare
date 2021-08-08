@@ -20,7 +20,7 @@ function CreatePost() {
   const history = useHistory();
 
   useEffect(() => {
-    const getURL = "http://localhost:8000/lookUpUser?userId=" + userId;
+    const getURL = "/lookUpUser?userId=" + userId;
     axios
       .get(getURL)
       .then((res) => {
@@ -34,7 +34,7 @@ function CreatePost() {
     e.preventDefault();
     if (!track) return;
     axios
-      .post("http://localhost:8000/createPost", {
+      .post("/createPost", {
         user,
         userId,
         userProfilePic,
