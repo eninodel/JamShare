@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const SpotifyWebApi = require("spotify-web-api-node");
 const { MongoClient, ObjectId } = require("mongodb");
 const path = require("path");
-require("dotenv").config({ path: "./process.env" });
-// require("dotenv").config();
+// require("dotenv").config({ path: "./process.env" });
+require("dotenv").config();
 
 const port = process.env.PORT || 8000;
 
@@ -224,10 +224,10 @@ async function getTopPosts() {
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(express.static(path.join(__dirname, "Frontend", "build")));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "Frontend", "build", "index.html"));
-// });
+app.use(express.static(path.join(__dirname, "Frontend", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "Frontend", "build", "index.html"));
+});
 
 app.get("/topPosts", (req, res) => {
   getTopPosts()
@@ -341,10 +341,9 @@ app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken;
 
   const spotifyAPI = new SpotifyWebApi({
-    redirectUri: "http://localhost:3000",
-    // redirectUri: "https://sharejams.herokuapp.com/",
+    redirectUri: process.env.REDIRECT_URI,
     clientId: "dfe1eb532747437b9b7d84a113a3933f",
-    clientSecret: "cb129470b1d742daa0e06bb2a7229107",
+    clientSecret: process.env.CLIENT_SECRET,
     refreshToken,
   });
 
@@ -364,10 +363,9 @@ app.post("/refresh", (req, res) => {
 app.post("/login", (req, res) => {
   const code = req.body.code;
   const spotifyAPI = new SpotifyWebApi({
-    // redirectUri: "https://sharejams.herokuapp.com/",
-    redirectUri: "http://localhost:3000",
+    redirectUri: process.env.REDIRECT_URI,
     clientId: "dfe1eb532747437b9b7d84a113a3933f",
-    clientSecret: "cb129470b1d742daa0e06bb2a7229107",
+    clientSecret: process.env.CLIENT_SECRET,
   });
 
   spotifyAPI
