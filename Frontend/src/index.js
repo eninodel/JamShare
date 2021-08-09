@@ -12,8 +12,11 @@ const store = createStore(
 );
 
 ReactDom.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      {/* <App /> */}
+      <h1>hello world</h1>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById("root")
 );
