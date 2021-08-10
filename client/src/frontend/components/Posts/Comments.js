@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Comments({
   user,
@@ -29,9 +30,15 @@ function Comments({
   return (
     <>
       <div className="individualComment">
-        <p>
+        {/* <p>
           {user}: {body}
-        </p>
+        </p> */}
+        <div>
+          <Link to={"/profile/" + commentUserId}>
+            <p>{user}</p>
+          </Link>
+          <p>{body}</p>
+        </div>
 
         {commentUserId === userId && (
           <button
