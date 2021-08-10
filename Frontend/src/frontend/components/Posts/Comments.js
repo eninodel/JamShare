@@ -18,7 +18,7 @@ function Comments({
     );
     setPostComments(newComments);
     axios
-      .post("/deleteComment", { commentId })
+      .post("api/deleteComment", { commentId })
       .then((res) => {
         console.log(res);
       })

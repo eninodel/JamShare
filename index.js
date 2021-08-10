@@ -9,7 +9,7 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(routes);
+app.use("/api", routes);
 
 app.use(express.static("./Frontend/build"));
 app.get("*", (request, response) => {
