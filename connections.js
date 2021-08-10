@@ -210,6 +210,22 @@ async function getTopPosts() {
   }
 }
 
+async function changePostPhotos(userId, userProfilePic) {
+  try {
+    await connect();
+    const cursor = await client
+      .db("JamShare")
+      .collection("Posts")
+      .updateMany(
+        { userId: userId },
+        { $set: { userProfilePic: userProfilePic } }
+      );
+    return cursor;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   connect,
   getRecentPosts,
@@ -223,4 +239,5 @@ module.exports = {
   getUserPosts,
   deletePost,
   getTopPosts,
+  changePostPhotos,
 };

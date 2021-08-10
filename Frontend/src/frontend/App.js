@@ -76,10 +76,11 @@ function App() {
                   ...data,
                   userProfilePic: res.data.data.userProfilePic,
                   bio: bio,
+                  changePostPhotos: false,
                 };
               }
             }
-            return { ...data, bio: bio };
+            return { ...data, bio: bio, changePostPhotos: true };
           })
           .then((data) => {
             axios
@@ -93,6 +94,15 @@ function App() {
                 // console.log(data);
               })
               .catch((err) => console.log(err));
+            if (data.changePostPhotos) {
+              axios
+                .post("/api/changePostPhotos", {
+                  userId: data.userId,
+                  userProfilePic: data.userProfilePic,
+                })
+                .then((data) => {})
+                .catch((err) => console.log(err));
+            }
           })
           .catch((err) => console.log(err));
       })

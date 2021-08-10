@@ -13,6 +13,7 @@ const {
   getUserPosts,
   deletePost,
   getTopPosts,
+  changePostPhotos,
 } = require("./connections");
 const express = require("express");
 const router = express.Router();
@@ -78,6 +79,12 @@ router.get("/recentposts", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+router.post("/changePostPhotos", (req, res) => {
+  changePostPhotos(req.body.userId, req.body.userProfilePic)
+    .then((data) => res.sendStatus(200))
+    .catch((err) => res.sendStatus(400));
 });
 
 router.post("/deletePost", (req, res) => {
