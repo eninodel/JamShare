@@ -147,12 +147,12 @@ function Post({
             return;
           } else {
             const index = postLikes.indexOf(currentUserId);
-            if (postLikes.length > 1) {
+            if (postLikes.length > 1 && index > -1) {
               handleLiked([...postLikes.splice(index, 1)]);
               setPostLikes([...postLikes.splice(index, 1)]);
             } else {
-              handleLiked([]);
-              setPostLikes([]);
+              handleLiked([...postLikes]);
+              setPostLikes([...postLikes]);
             }
             setLiked(false);
           }
