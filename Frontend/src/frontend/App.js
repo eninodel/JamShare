@@ -30,10 +30,10 @@ const options = {
 
 function App() {
   const dispatch = useDispatch();
-  let accessToken = UseAuth(code);
+  let accessToken = Cookies.get("accessToken");
 
   if (!accessToken) {
-    accessToken = Cookies.get("accessToken");
+    accessToken = UseAuth(code);
   }
   let playing = useSelector((state) => state.PlayingReducer.playing);
 

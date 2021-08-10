@@ -9,7 +9,6 @@ export default function UseAuth(code) {
 
   useEffect(() => {
     // gets the token
-    console.log("code passed in useAuth: " + code);
     if (!code) return null;
     if (code === "guest") {
       Cookies.set("accessToken", "guest", { expires: 1 / 24 });
@@ -28,7 +27,7 @@ export default function UseAuth(code) {
         setExpiresIn(res.data.expiresIn);
       })
       .catch((err) => {
-        // window.location = "/";
+        window.location = "/";
         console.log(err);
       });
   }, [code]);

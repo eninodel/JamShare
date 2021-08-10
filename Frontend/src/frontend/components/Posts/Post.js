@@ -28,13 +28,15 @@ function Post({
   const dispatch = useDispatch();
   const [addComment, setAddComment] = useState(false);
   const [postComments, setPostComments] = useState([...comments]);
-  const [liked, setLiked] = useState();
+  const [liked, setLiked] = useState(); // Bool
+  const [postLikes, setPostLikes] = useState(); // Arr
   const [showComments, setShowComments] = useState(false);
   const [days, setDays] = useState(0);
   const alert = useAlert();
 
   useEffect(() => {
-    likes ? setLiked([...likes]) : setLiked([]);
+    likes ? setPostLikes([...likes]) : setPostLikes([]);
+    setLiked(likes.indexOf(currentUserId) !== -1);
     const pastDate = new Date(date);
     const today = new Date();
     const difference = today.getTime() - pastDate.getTime();
@@ -45,7 +47,7 @@ function Post({
   const handleLiked = (newLikes) => {
     axios
       .post("/api/updateLikes", {
-        post_id: post_id,
+        _id: post_id,
         newLikes,
       })
       .then((res) => {
@@ -59,11 +61,7 @@ function Post({
   const displayLikesIcon = () => {
     if (!liked) return <MdFavoriteBorder />;
     else {
-      if (liked.includes(currentUserId)) {
-        return <MdFavorite />;
-      } else {
-        return <MdFavoriteBorder />;
-      }
+      return <MdFavorite />;
     }
   };
   const handleDelete = () => {
@@ -143,26 +141,21 @@ function Post({
             return;
           }
           if (!liked) {
-            handleLiked([...liked, currentUserId]);
-            setLiked([...liked, currentUserId]);
+            handleLiked([...postLikes, currentUserId]);
+            setLiked(true);
             return;
-          }
-          if (liked.includes(currentUserId)) {
-            const index = liked.indexOf(currentUserId);
-            if (liked.length > 1) {
-              setLiked([...liked.splice(index, 1)]);
+          } else {
+            const index = postLikes.indexOf(currentUserId);
+            if (postLikes.length > 1) {
               handleLiked([...liked.splice(index, 1)]);
             } else {
-              setLiked([]);
               handleLiked([]);
             }
-          } else {
-            setLiked([...liked, currentUserId]);
-            handleLiked([...liked, currentUserId]);
+            setLiked(false);
           }
         }}
       >
-        <p>{liked ? liked.length : 0}</p>
+        <p>{postLikes ? postLikes.length : 0}</p>
         {displayLikesIcon()}
       </div>
 
