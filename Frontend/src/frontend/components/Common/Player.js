@@ -12,7 +12,7 @@ function Player() {
 
   return (
     <>
-      {trackURI && accessToken !== "guest" && product === "premium" && (
+      {accessToken !== "guest" && product === "premium" && (
         <div className="player">
           <SpotifyPlayer
             token={accessToken}
