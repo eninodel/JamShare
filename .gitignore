@@ -1,9 +1,6 @@
 node_modules/
 process.env
 credentials.txt
-build/
 actions/
 frontend/
 reducers
-connections.js
-routes.js

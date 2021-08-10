@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import MainNav from "../Common/MainNav";
-import DisplayPosts from "../Posts/DisplayPosts";
+import DisplayPosts from "../Posts/DisplayPosts"; // error here
 import { useAlert } from "react-alert";
 import Cookies from "js-cookie";
 

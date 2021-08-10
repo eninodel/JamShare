@@ -18,7 +18,7 @@ function Post({
   comments,
   image,
   date,
-  _id,
+  post_id,
   uri,
   userProfilePic,
   name,
@@ -45,7 +45,7 @@ function Post({
   const handleLiked = (newLikes) => {
     axios
       .post("/updateLikes", {
-        _id: _id,
+        post_id: post_id,
         newLikes,
       })
       .then((res) => {
@@ -68,10 +68,10 @@ function Post({
   };
   const handleDelete = () => {
     axios
-      .post("/deletePost", { _id: _id })
+      .post("/deletePost", { post_id: post_id })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    handleDeletePost(_id);
+    handleDeletePost(post_id);
   };
 
   const renderAddComment = () => {
@@ -79,7 +79,7 @@ function Post({
     if (addComment) {
       return (
         <CreateComment
-          _id={_id}
+          post_id={post_id}
           postComments={postComments}
           setPostComments={setPostComments}
           addComment={addComment}

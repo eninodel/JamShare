@@ -1,10 +1,10 @@
 import React from "react";
-import Homepage from "./components/Homepage/Homepage";
-import CreatePost from "./components/CreatePost/CreatePost";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Homepage from "./components/Homepage/Homepage"; // error here
+import CreatePost from "./components/CreatePost/CreatePost"; // fine
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Login from "./components/Login/Login";
-import ProfilePage from "./components/Profile/ProfilePage";
-import TopPosts from "./components/TopPosts/TopPosts";
+import ProfilePage from "./components/Profile/ProfilePage"; //error here too
+import TopPosts from "./components/TopPosts/TopPosts"; // error here
 import Cookies from "js-cookie";
 
 function Router() {
@@ -12,7 +12,7 @@ function Router() {
 
   if (accessToken) {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route exact path="/">
             <Homepage />
@@ -25,7 +25,7 @@ function Router() {
             <TopPosts />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     );
   } else {
     return <Login />;

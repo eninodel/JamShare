@@ -49,10 +49,10 @@ function DisplayPosts({ extension, setDisplayPosts }) {
             userId={data.userId}
             body={data.body}
             likes={data.likes}
-            image={data.image}
             comments={data.comments}
+            image={data.image}
             date={data.date}
-            _id={data._id}
+            post_id={data._id}
             uri={data.uri}
             userProfilePic={data.userProfilePic}
             name={data.name}

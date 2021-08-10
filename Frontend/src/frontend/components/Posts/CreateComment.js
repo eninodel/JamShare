@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import useComponentVisible from "../useComponentVisible";
-import { ObjectId } from "mongodb";
+import uuid from "react-uuid";
 
 function CreateComment({
-  _id,
+  post_id,
   postComments,
   setPostComments,
   addComment,
@@ -32,14 +32,17 @@ function CreateComment({
     if (!body) return;
     e.preventDefault();
     setAddComment(!addComment);
+    const commentId = uuid(); // use uuid for unique ids because Mongo DB ObjectId does not work
     const newComments = [
       ...postComments,
-      { user, userId, _id, body, commentId: new ObjectId() },
+      { user, userId, post_id, body, commentId },
     ];
     setPostComments(newComments);
     axios
-      .post("/addComment", { user, userId, _id, body })
-      .then((res) => {})
+      .post("/addComment", { user, userId, post_id, body, commentId })
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => console.log(err));
     setBody("");
   };
