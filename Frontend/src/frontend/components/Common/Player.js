@@ -17,7 +17,7 @@ function Player() {
           <SpotifyPlayer
             token={accessToken}
             showSaveIcon
-            uris={trackURI ? [trackURI] : []}
+            uris={trackURI ? trackURI : []}
             autoPlay={true}
             styles={{ height: 60 }}
             magnifySliderOnHover={true}
