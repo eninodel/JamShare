@@ -11,9 +11,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/api", routes);
 
-app.use(express.static("./Frontend/build"));
+app.use(express.static("./client/build"));
 app.get("*", (request, response) => {
-  response.sendFile(path.join(__dirname, "Frontend/build", "index.html"));
+  response.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
 const port = process.env.PORT || 8000;
