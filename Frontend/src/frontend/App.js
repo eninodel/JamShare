@@ -9,6 +9,7 @@ import { positions, Provider } from "react-alert";
 import AlertMUITemplate from "react-alert-template-mui";
 import Cookies from "js-cookie";
 import defaultImgAddress from "./components/Common/DefaultImage";
+import { isMobile } from "react-device-detect";
 import axios from "axios";
 
 let code = new URLSearchParams(window.location.search).get("code");
@@ -101,7 +102,8 @@ function App() {
   return (
     <Provider template={AlertMUITemplate} {...options}>
       <Router />
-      {playing.length > 0 && <Player />}
+      {!isMobile && playing.length > 0 && <Player />}{" "}
+      {/* Spotify web playback not avaiable on mobile*/}
     </Provider>
   );
 }

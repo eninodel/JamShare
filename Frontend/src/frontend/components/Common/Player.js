@@ -12,12 +12,12 @@ function Player() {
 
   return (
     <>
-      {accessToken !== "guest" && product === "premium" && (
+      {trackURI && accessToken !== "guest" && product === "premium" && (
         <div className="player">
           <SpotifyPlayer
             token={accessToken}
             showSaveIcon
-            uris={trackURI ? trackURI : []}
+            uris={trackURI ? [trackURI] : []}
             autoPlay={true}
             styles={{ height: 60 }}
             magnifySliderOnHover={true}
