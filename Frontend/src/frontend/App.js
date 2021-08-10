@@ -1,7 +1,7 @@
 import { useEffect, React } from "react";
 import UseAuth from "./components/useAuth";
 import Player from "./components/Common/Player";
-import Router from "./Router"; // error in this one !!!!!!!!!!!!
+import Router from "./Router";
 import SpotifyWebApi from "spotify-web-api-node";
 import { setUserId, setProduct } from "../actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";

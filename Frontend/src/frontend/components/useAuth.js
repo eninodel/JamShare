@@ -10,13 +10,6 @@ export default function UseAuth(code) {
   useEffect(() => {
     // gets the token
     if (!code) return null;
-    if (code === "guest") {
-      Cookies.set("accessToken", "guest", { expires: 1 / 24 });
-      setAccessToken("guest");
-      setRefreshToken("guest");
-      setExpiresIn(3600);
-      return;
-    }
     axios
       .post("/api/login", { code })
       .then((res) => {
