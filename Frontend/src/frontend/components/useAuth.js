@@ -20,6 +20,7 @@ export default function UseAuth(code) {
     axios
       .post("/login", { code })
       .then((res) => {
+        console.log("useAuth /login response: " + res.data);
         Cookies.set("accessToken", res.data.accessToken, { expires: 1 / 24 });
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);

@@ -29,21 +29,16 @@ const options = {
 };
 
 function App() {
-  console.log("here in app");
   const dispatch = useDispatch();
   let accessToken = UseAuth(code);
 
-  console.log("app2");
   if (!accessToken) {
-    console.log("getting cookies");
     accessToken = Cookies.get("accessToken");
   }
-  console.log("getting playing");
   let playing = useSelector((state) => state.PlayingReducer.playing);
 
   useEffect(() => {
     if (!accessToken || accessToken === "guest") return;
-    console.log("made it into useeffect");
     spotifyAPI.setAccessToken(accessToken);
     spotifyAPI
       .getMe()
