@@ -156,7 +156,7 @@ router.post("/refresh", (req, res) => {
 
 router.post("/login", (req, res) => {
   const code = req.body.code;
-  const spotifyAPI = new SpotifyWebAPI({
+  const spotifyAPI = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
     clientId: "dfe1eb532747437b9b7d84a113a3933f",
     clientSecret: process.env.CLIENT_SECRET,
