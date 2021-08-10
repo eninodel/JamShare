@@ -82,10 +82,7 @@ async function deleteComment(commentId) {
     const cursor = await client
       .db("JamShare")
       .collection("Posts")
-      .updateMany(
-        {},
-        { $pull: { comments: { commentId: ObjectId(commentId) } } }
-      );
+      .updateMany({}, { $pull: { comments: { commentId: commentId } } });
     return cursor;
   } catch (err) {
     console.log(err);
