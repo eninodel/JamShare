@@ -148,8 +148,8 @@ function Post({
           } else {
             const index = postLikes.indexOf(currentUserId);
             if (postLikes.length > 1) {
-              handleLiked([...liked.splice(index, 1)]);
-              setPostLikes([...liked.splice(index, 1)]);
+              handleLiked([...postLikes.splice(index, 1)]);
+              setPostLikes([...postLikes.splice(index, 1)]);
             } else {
               handleLiked([]);
               setPostLikes([]);
