@@ -33,7 +33,7 @@ function Comments({
         {/* <p>
           {user}: {body}
         </p> */}
-        <div>
+        <div className="userAndBody">
           <Link to={"/profile/" + commentUserId}>
             <p>{user}</p>
           </Link>

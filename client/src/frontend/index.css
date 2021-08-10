@@ -331,6 +331,12 @@ li:active {
   font-size: 1rem;
   text-align: right;
 }
+.userAndBody a {
+  text-decoration: none;
+}
+.userAndBody a:hover {
+  text-decoration: underline;
+}
 .commentSection {
   height: min-content;
   max-height: 100px;
