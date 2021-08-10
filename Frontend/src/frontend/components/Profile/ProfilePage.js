@@ -17,7 +17,7 @@ function ProfilePage() {
   let { userId } = useParams();
 
   useEffect(() => {
-    const getURL = "api/lookUpUser?userId=" + userId;
+    const getURL = "/api/lookUpUser?userId=" + userId;
     axios
       .get(getURL)
       .then((res) => {
@@ -33,7 +33,7 @@ function ProfilePage() {
     setEditBio(false);
     if (!userId) return;
     axios
-      .post("api/addUser", {
+      .post("/api/addUser", {
         userId: userId,
         user: user,
         userProfilePic: userProfilePic,

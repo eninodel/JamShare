@@ -44,7 +44,7 @@ function Post({
 
   const handleLiked = (newLikes) => {
     axios
-      .post("api/updateLikes", {
+      .post("/api/updateLikes", {
         post_id: post_id,
         newLikes,
       })
@@ -68,7 +68,7 @@ function Post({
   };
   const handleDelete = () => {
     axios
-      .post("api/deletePost", { post_id: post_id })
+      .post("/api/deletePost", { post_id: post_id })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     handleDeletePost(post_id);

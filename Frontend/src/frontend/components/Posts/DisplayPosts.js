@@ -11,7 +11,7 @@ function DisplayPosts({ extension, setDisplayPosts }) {
 
   useEffect(() => {
     if (!accessToken) return null;
-    const URL = "api/" + extension;
+    const URL = "/api/" + extension;
     axios
       .get(URL)
       .then((res) => {

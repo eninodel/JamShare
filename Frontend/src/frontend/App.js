@@ -58,7 +58,7 @@ function App() {
         };
       })
       .then((data) => {
-        const getURL = "api/lookUpUser?userId=" + data.userId;
+        const getURL = "/api/lookUpUser?userId=" + data.userId;
         axios
           .get(getURL)
           .then((res) => {
@@ -82,7 +82,7 @@ function App() {
           })
           .then((data) => {
             axios
-              .post("api/addUser", {
+              .post("/api/addUser", {
                 userId: data.userId,
                 user: data.user,
                 userProfilePic: data.userProfilePic,

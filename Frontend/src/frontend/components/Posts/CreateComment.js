@@ -19,7 +19,7 @@ function CreateComment({
   const [user, setUser] = useState();
 
   useEffect(() => {
-    const getURL = "api/lookUpUser?userId=" + userId;
+    const getURL = "/api/lookUpUser?userId=" + userId;
     axios
       .get(getURL)
       .then((res) => {
@@ -39,7 +39,7 @@ function CreateComment({
     ];
     setPostComments(newComments);
     axios
-      .post("api/addComment", { user, userId, post_id, body, commentId })
+      .post("/api/addComment", { user, userId, post_id, body, commentId })
       .then((res) => {
         console.log(res);
       })
