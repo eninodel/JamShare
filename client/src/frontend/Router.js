@@ -2,6 +2,7 @@ import React from "react";
 import Homepage from "./components/Homepage/Homepage"; // error here
 import CreatePost from "./components/CreatePost/CreatePost"; // fine
 import { HashRouter, Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Login from "./components/Login/Login";
 import ProfilePage from "./components/Profile/ProfilePage"; //error here too
 import TopPosts from "./components/TopPosts/TopPosts"; // error here
@@ -9,8 +10,9 @@ import Cookies from "js-cookie";
 
 function Router() {
   const accessToken = Cookies.get("accessToken");
+  const userId = useSelector((state) => state.UserReducer.userId);
 
-  if (accessToken) {
+  if (accessToken && userId) {
     return (
       <HashRouter>
         <Switch>
