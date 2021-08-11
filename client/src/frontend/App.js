@@ -63,7 +63,7 @@ function App() {
       })
       .catch((err) => {
         Cookies.remove("accessToken");
-        window.location = "/";
+        window.location.href = "/";
       })
       .then((data) => {
         const getURL = "/api/lookUpUser?userId=" + data.userId;
@@ -100,7 +100,10 @@ function App() {
               .then((data) => {
                 // console.log(data);
               })
-              .catch((err) => console.log("here 1: " + err));
+              .catch((err) => {
+                Cookies.remove("accessToken");
+                window.location.href = "/";
+              });
             if (data.changePostPhotos) {
               axios
                 .post("/api/changePostPhotos", {
@@ -108,17 +111,20 @@ function App() {
                   userProfilePic: data.userProfilePic,
                 })
                 .then((data) => {})
-                .catch((err) => console.log("here 2: " + err));
+                .catch((err) => {
+                  Cookies.remove("accessToken");
+                  window.location.href = "/";
+                });
             }
           })
           .catch((err) => {
             Cookies.remove("accessToken");
-            window.location = "/";
+            window.location.href = "/";
           });
       })
       .catch((err) => {
         Cookies.remove("accessToken");
-        window.location = "/";
+        window.location.href = "/";
       });
   }, [accessToken]);
 
