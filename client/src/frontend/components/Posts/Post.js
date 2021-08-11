@@ -124,7 +124,7 @@ function Post({
             setAddedToLibrary(false);
           }}
         >
-          Remove From Library
+          Remove From Liked Songs
         </button>
       );
     } else {
@@ -137,7 +137,7 @@ function Post({
             setAddedToLibrary(true);
           }}
         >
-          Add to Library
+          Add to Liked Songs
         </button>
       );
     }
