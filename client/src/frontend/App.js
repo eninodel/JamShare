@@ -75,8 +75,8 @@ function App() {
         };
       })
       .catch((err) => {
-        Cookies.remove("accessToken");
-        window.location.href = "/";
+        // Cookies.remove("accessToken");
+        // window.location.href = "/";
       })
       .then((data) => {
         const getURL = "/api/lookUpUser?userId=" + data.userId;
@@ -114,7 +114,7 @@ function App() {
                 // console.log(data);
               })
               .catch((err) => {
-                Cookies.remove("accessToken");
+                // Cookies.remove("accessToken");
                 window.location.href = "/";
               });
             if (data.changePostPhotos) {
@@ -125,18 +125,18 @@ function App() {
                 })
                 .then((data) => {})
                 .catch((err) => {
-                  Cookies.remove("accessToken");
+                  // Cookies.remove("accessToken");
                   window.location.href = "/";
                 });
             }
           })
           .catch((err) => {
-            Cookies.remove("accessToken");
+            // Cookies.remove("accessToken");
             window.location.href = "/";
           });
       })
       .catch((err) => {
-        Cookies.remove("accessToken");
+        // Cookies.remove("accessToken");
         window.location.href = "/";
       });
   }, [accessToken]);
