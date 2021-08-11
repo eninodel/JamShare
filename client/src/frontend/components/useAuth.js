@@ -14,6 +14,7 @@ export default function UseAuth(code) {
       .post("/api/login", { code })
       .then((res) => {
         console.log("useAuth /login response: " + res.data);
+        console.log("useAuth /login response: " + res.status);
         Cookies.set("accessToken", res.data.accessToken, { expires: 1 / 24 });
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
@@ -21,7 +22,7 @@ export default function UseAuth(code) {
       })
       .catch((err) => {
         window.location = "/";
-        console.log(err);
+        console.log("error in useAuth: " + err);
       });
   }, [code]);
 
