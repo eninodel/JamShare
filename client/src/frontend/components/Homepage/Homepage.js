@@ -12,7 +12,7 @@ function Homepage() {
   useEffect(() => {
     if (accessToken !== "guest") return;
     alert.info(
-      "Guest users are not allowed to create, like, or comment on posts. Guest users cannot visit the Profile or Create a Post window. Login with Spotify to unlock further access.",
+      "Guest users are not allowed to create, like, or comment on posts. Guest users cannot visit the Profile or Create a Post pages. Login with Spotify to unlock further access.",
       {
         title: "Important Information",
       }
