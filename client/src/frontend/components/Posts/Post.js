@@ -42,14 +42,7 @@ function Post({
     clientId: "dfe1eb532747437b9b7d84a113a3933f",
   });
 
-  if (currentUserId) spotifyAPI.setAccessToken(accessToken);
-
   useEffect(() => {
-    if (currentUserId) {
-      spotifyAPI
-        .containsMySavedTracks([trackId])
-        .then((res) => setAddedToLibrary(res.body[0]));
-    }
     likes ? setPostLikes([...likes]) : setPostLikes([]);
     setLiked(likes.indexOf(currentUserId) !== -1);
     const pastDate = new Date(date);
@@ -59,6 +52,15 @@ function Post({
     setDays(differenceInDays);
   }, []);
 
+  useEffect(() => {
+    if (currentUserId) {
+      spotifyAPI.setAccessToken(accessToken)
+      spotifyAPI
+        .containsMySavedTracks([trackId])
+        .then((res) => setAddedToLibrary(res.body[0]));
+    }  
+  }, [currentUserId])
+  
   const handleLiked = (newLikes) => {
     axios
       .post("/api/updateLikes", {
