@@ -33,13 +33,14 @@ function App() {
   const dispatch = useDispatch();
   let accessToken = Cookies.get("accessToken");
 
-  if (!accessToken) {
+  if (!accessToken || accessToken === "invalid") {
     accessToken = UseAuth(code);
   }
   let playing = useSelector((state) => state.PlayingReducer.playing);
 
   useEffect(() => {
-    if (!accessToken || accessToken === "guest") return;
+    if (!accessToken || accessToken === "guest" || accessToken === "invalid")
+      return;
     spotifyAPI.setAccessToken(accessToken);
     spotifyAPI
       .getMe()
