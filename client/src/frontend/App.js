@@ -35,7 +35,7 @@ function App() {
 
   console.log("code in app.js: " + code);
 
-  if (!accessToken || accessToken === "invalid") {
+  if (!accessToken) {
     console.log("code in if statement app.js" + code);
     accessToken = UseAuth(code);
   }
