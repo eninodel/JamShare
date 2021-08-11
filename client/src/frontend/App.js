@@ -111,9 +111,15 @@ function App() {
                 .catch((err) => console.log("here 2: " + err));
             }
           })
-          .catch((err) => console.log("here 3: " + err));
+          .catch((err) => {
+            Cookies.remove("accessToken");
+            window.location = "/";
+          });
       })
-      .catch((err) => console.log("here 4: " + err));
+      .catch((err) => {
+        Cookies.remove("accessToken");
+        window.location = "/";
+      });
   }, [accessToken]);
 
   return (
