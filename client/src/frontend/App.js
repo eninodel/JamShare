@@ -46,6 +46,10 @@ function App() {
     spotifyAPI.setAccessToken(accessToken);
     spotifyAPI
       .getMe()
+      .catch((err) => {
+        Cookies.remove("accessToken");
+        window.location.href = "/";
+      })
       .then((res) => {
         dispatch(setProduct(res.body.product));
         if (res.body.id) dispatch(setUserId(res.body.id));
