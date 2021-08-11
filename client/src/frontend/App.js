@@ -44,10 +44,16 @@ function App() {
   useEffect(() => {
     if (!accessToken || accessToken === "guest") return;
     spotifyAPI.setAccessToken(accessToken);
-    spotifyAPI.getMe().then((data) => {
-      console.log("first then: " + data);
-      console.log("first then: " + data.body);
-    });
+    spotifyAPI
+      .getMe()
+      .then((data) => {
+        // console.log("first then: " + data);
+        // console.log("first then: " + data.body);
+      })
+      .catch((error) => {
+        Cookies.remove("accessToken");
+        window.location.href = "/";
+      });
     spotifyAPI
       .getMe()
       .then((res) => {
