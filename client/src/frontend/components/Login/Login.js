@@ -11,11 +11,13 @@ function Login() {
 
   const showAlert = () => {
     if (accesssToken === "invalid") {
-      Cookies.remove("accessToken");
       alert.show(
         "To login with Spotify please contact Edwin Nino Delgado. For now please login as a guest",
         {
           title: "Login Error",
+          onClose: () => {
+            Cookies.remove("accessToken");
+          },
         }
       );
     } else {
