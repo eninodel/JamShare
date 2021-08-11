@@ -11,8 +11,9 @@ import Cookies from "js-cookie";
 function Router() {
   const accessToken = Cookies.get("accessToken");
   const userId = useSelector((state) => state.UserReducer.userId);
+  console.log("userId in Router.js: " + userId);
 
-  if (accessToken && userId) {
+  if (accessToken) {
     return (
       <HashRouter>
         <Switch>

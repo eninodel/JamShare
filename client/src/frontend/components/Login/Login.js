@@ -9,6 +9,19 @@ function Login() {
   const alert = useAlert();
   const accesssToken = Cookies.get("accessToken");
 
+  const showAlert = () => {
+    if (accesssToken && accesssToken !== "guest") {
+      alert.show(
+        "To login with Spotify please contact Edwin Nino Delgado. For now please login as a guest",
+        {
+          title: "Login Error",
+        }
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="login">
       <h1>Jam Share</h1>
@@ -27,14 +40,7 @@ function Login() {
           (Limited experience)
         </a>
       </div>
-      {accesssToken !== "guest" &&
-        accesssToken &&
-        alert.show(
-          "To login with Spotify please contact Edwin Nino Delgado. For now please login as a guest",
-          {
-            title: "Login Error",
-          }
-        )}
+      {showAlert()}
     </div>
   );
 }
