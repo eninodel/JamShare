@@ -42,7 +42,7 @@ function App() {
   let playing = useSelector((state) => state.PlayingReducer.playing);
 
   useEffect(() => {
-    if (!accessToken || accessToken === "guest") return;
+    if (!accessToken || accessToken === "guest" || accessToken === "invalid") return;
     axios
       .get("https://api.spotify.com/v1/me", {
         headers: {
