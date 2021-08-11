@@ -61,6 +61,9 @@ function App() {
           userProfilePic: userProfilePic,
         };
       })
+      .catch((err) => {
+        console.log("first catch: " + err);
+      })
       .then((data) => {
         const getURL = "/api/lookUpUser?userId=" + data.userId;
         axios
