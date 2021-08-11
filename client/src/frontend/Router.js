@@ -12,6 +12,7 @@ function Router() {
   const accessToken = Cookies.get("accessToken");
   const userId = useSelector((state) => state.UserReducer.userId);
   console.log("userId in Router.js: " + userId);
+  console.log("accessToken in Router: " + accessToken);
 
   if (accessToken && accessToken !== "invalid") {
     return (

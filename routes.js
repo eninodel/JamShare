@@ -172,6 +172,7 @@ router.post("/login", (req, res) => {
   spotifyAPI
     .authorizationCodeGrant(code)
     .then((data) => {
+      console.log("/login in server:" + data + "code: " + code);
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,

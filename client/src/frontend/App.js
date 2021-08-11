@@ -33,7 +33,9 @@ function App() {
   const dispatch = useDispatch();
   let accessToken = Cookies.get("accessToken");
 
-  if (!accessToken || accessToken === "invalid") {
+  console.log("code in app.js: " + code);
+
+  if ((!accessToken || accessToken === "invalid") && code) {
     accessToken = UseAuth(code);
   }
   let playing = useSelector((state) => state.PlayingReducer.playing);
