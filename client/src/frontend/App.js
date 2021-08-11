@@ -62,7 +62,8 @@ function App() {
         };
       })
       .catch((err) => {
-        console.log("first catch: " + err);
+        Cookies.remove("accessToken");
+        window.location = "/";
       })
       .then((data) => {
         const getURL = "/api/lookUpUser?userId=" + data.userId;
