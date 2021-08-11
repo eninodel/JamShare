@@ -337,6 +337,13 @@ li:active {
 .userAndBody a:hover {
   text-decoration: underline;
 }
+.likesAndLibraryContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.submitComment#addToLibrary button {
+  font-size: 1rem;
+}
 .commentSection {
   height: min-content;
   max-height: 100px;

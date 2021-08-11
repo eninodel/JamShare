@@ -2,8 +2,10 @@ import React from "react";
 import Cookies from "js-cookie";
 import { useAlert } from "react-alert";
 
+// const AUTH_URL =
+//   "https://accounts.spotify.com/authorize?client_id=dfe1eb532747437b9b7d84a113a3933f&response_type=code&redirect_uri=http://localhost:3000&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state%20user-library-modify%20user-library-read"; //dev
 const AUTH_URL =
-  "https://accounts.spotify.com/authorize?client_id=dfe1eb532747437b9b7d84a113a3933f&response_type=code&redirect_uri=https://www.jam-share.com/&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state";
+  "https://accounts.spotify.com/authorize?client_id=dfe1eb532747437b9b7d84a113a3933f&response_type=code&redirect_uri=https://www.jam-share.com/&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state%20user-library-modify%20user-library-read";
 
 function Login() {
   const alert = useAlert();

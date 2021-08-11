@@ -8,6 +8,8 @@ import CreateComment from "./CreateComment";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
+import SpotifyWebApi from "spotify-web-api-node";
+import Cookies from "js-cookie";
 import uuid from "react-uuid";
 
 function Post({
@@ -32,9 +34,22 @@ function Post({
   const [postLikes, setPostLikes] = useState(); // Arr
   const [showComments, setShowComments] = useState(false);
   const [days, setDays] = useState(0);
+  let accessToken = Cookies.get("accessToken");
   const alert = useAlert();
+  const [addedToLibrary, setAddedToLibrary] = useState();
+  const trackId = uri.slice(14);
+  const spotifyAPI = new SpotifyWebApi({
+    clientId: "dfe1eb532747437b9b7d84a113a3933f",
+  });
+
+  if (currentUserId) spotifyAPI.setAccessToken(accessToken);
 
   useEffect(() => {
+    if (currentUserId) {
+      spotifyAPI
+        .containsMySavedTracks([trackId])
+        .then((res) => setAddedToLibrary(res.body[0]));
+    }
     likes ? setPostLikes([...likes]) : setPostLikes([]);
     setLiked(likes.indexOf(currentUserId) !== -1);
     const pastDate = new Date(date);
@@ -95,6 +110,33 @@ function Post({
     }
   };
 
+  const renderAddToLibrary = () => {
+    if (!currentUserId) return null;
+    if (addedToLibrary) {
+      return (
+        <button
+          type="button"
+          onClick={() => {
+            spotifyAPI.removeFromMySavedTracks([trackId]);
+            setAddedToLibrary(false);
+          }}
+        >
+          Remove From Library
+        </button>
+      );
+    } else {
+      <button
+        type="button"
+        onClick={() => {
+          spotifyAPI.addToMySavedTracks([trackId]);
+          setAddedToLibrary(true);
+        }}
+      >
+        Add to Library
+      </button>;
+    }
+  };
+
   return (
     <div className="post">
       <div className="postTop">
@@ -131,34 +173,39 @@ function Post({
           dispatch(setPlaying(uri));
         }}
       />
-      <div
-        className="likes"
-        onClick={() => {
-          if (!currentUserId) {
-            alert.show("Login with Spotify to like posts", {
-              title: "Invalid Action",
-            });
-            return;
-          }
-          if (!liked) {
-            // liking post
-            handleLiked([...postLikes, currentUserId]);
-            setPostLikes([...postLikes, currentUserId]);
-            setLiked(true);
-            return;
-          } else {
-            // unliking post
-            const newPostLikes = postLikes.filter(
-              (person) => person !== currentUserId
-            );
-            handleLiked([...newPostLikes]);
-            setPostLikes([...newPostLikes]);
-            setLiked(false);
-          }
-        }}
-      >
-        <p>{postLikes ? postLikes.length : 0}</p>
-        {displayLikesIcon()}
+      <div className="likesAndLibraryContainer">
+        <div
+          className="likes"
+          onClick={() => {
+            if (!currentUserId) {
+              alert.show("Login with Spotify to like posts", {
+                title: "Invalid Action",
+              });
+              return;
+            }
+            if (!liked) {
+              // liking post
+              handleLiked([...postLikes, currentUserId]);
+              setPostLikes([...postLikes, currentUserId]);
+              setLiked(true);
+              return;
+            } else {
+              // unliking post
+              const newPostLikes = postLikes.filter(
+                (person) => person !== currentUserId
+              );
+              handleLiked([...newPostLikes]);
+              setPostLikes([...newPostLikes]);
+              setLiked(false);
+            }
+          }}
+        >
+          <p>{postLikes ? postLikes.length : 0}</p>
+          {displayLikesIcon()}
+        </div>
+        <div className="submitComment" id="addToLibrary">
+          {renderAddToLibrary()}
+        </div>
       </div>
 
       {!showComments && postComments.length > 0 && (
