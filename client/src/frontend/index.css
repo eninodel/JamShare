@@ -342,6 +342,7 @@ li:active {
 }
 .userAndBody a {
   text-decoration: none;
+  color:grey;
 }
 .userAndBody a:hover {
   text-decoration: underline;
