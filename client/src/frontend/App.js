@@ -42,8 +42,7 @@ function App() {
   let playing = useSelector((state) => state.PlayingReducer.playing);
 
   useEffect(() => {
-    if (!accessToken || accessToken === "guest" || accessToken === "invalid")
-      return;
+    if (!accessToken || accessToken === "guest") return;
     spotifyAPI.setAccessToken(accessToken);
     spotifyAPI
       .getMe()

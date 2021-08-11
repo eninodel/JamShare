@@ -22,7 +22,7 @@ export default function UseAuth(code) {
       .catch((err) => {
         console.log("err in use auth: " + err);
         // Cookies.set("accessToken", "invalid", { expires: 1 / 24 });
-        // window.location = "/";
+        window.location = "/";
       });
   }, [code]);
 
