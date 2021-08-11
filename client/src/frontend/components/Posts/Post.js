@@ -54,13 +54,13 @@ function Post({
 
   useEffect(() => {
     if (currentUserId) {
-      spotifyAPI.setAccessToken(accessToken)
+      spotifyAPI.setAccessToken(accessToken);
       spotifyAPI
         .containsMySavedTracks([trackId])
         .then((res) => setAddedToLibrary(res.body[0]));
-    }  
-  }, [currentUserId])
-  
+    }
+  }, [currentUserId]);
+
   const handleLiked = (newLikes) => {
     axios
       .post("/api/updateLikes", {
@@ -119,6 +119,7 @@ function Post({
         <button
           type="button"
           onClick={() => {
+            spotifyAPI.setAccessToken(accessToken);
             spotifyAPI.removeFromMySavedTracks([trackId]);
             setAddedToLibrary(false);
           }}
@@ -127,15 +128,18 @@ function Post({
         </button>
       );
     } else {
-      <button
-        type="button"
-        onClick={() => {
-          spotifyAPI.addToMySavedTracks([trackId]);
-          setAddedToLibrary(true);
-        }}
-      >
-        Add to Library
-      </button>;
+      return (
+        <button
+          type="button"
+          onClick={() => {
+            spotifyAPI.setAccessToken(accessToken);
+            spotifyAPI.addToMySavedTracks([trackId]);
+            setAddedToLibrary(true);
+          }}
+        >
+          Add to Library
+        </button>
+      );
     }
   };
 
