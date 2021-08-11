@@ -139,7 +139,7 @@ function App() {
         // Cookies.remove("accessToken");
         window.location.href = "/";
       });
-  }, [accessToken]);
+  }, []);
 
   return (
     <Provider template={AlertMUITemplate} {...options}>
