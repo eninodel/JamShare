@@ -52,7 +52,7 @@ function App() {
       .then((data) => console.log(data.body))
       .catch((err) => {
         if (err.response.status === 403) {
-          Cookies.remove("accessToken");
+          Cookies.set("accessToken", "invalid");
           window.location.href = "/";
         }
       });
