@@ -93,7 +93,7 @@ function App() {
               .then((data) => {
                 // console.log(data);
               })
-              .catch((err) => console.log(err));
+              .catch((err) => console.log("here 1: " + err));
             if (data.changePostPhotos) {
               axios
                 .post("/api/changePostPhotos", {
@@ -101,12 +101,12 @@ function App() {
                   userProfilePic: data.userProfilePic,
                 })
                 .then((data) => {})
-                .catch((err) => console.log(err));
+                .catch((err) => console.log("here 2: " + err));
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log("here 3: " + err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("here 4: " + err));
   }, [accessToken]);
 
   return (

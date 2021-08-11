@@ -13,7 +13,7 @@ function Router() {
   const userId = useSelector((state) => state.UserReducer.userId);
   console.log("userId in Router.js: " + userId);
 
-  if (accessToken === "guest" || (accessToken !== "guest" && userId)) {
+  if (accessToken) {
     return (
       <HashRouter>
         <Switch>
