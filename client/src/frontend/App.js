@@ -35,7 +35,8 @@ function App() {
 
   console.log("code in app.js: " + code);
 
-  if ((!accessToken || accessToken === "invalid") && code) {
+  if (!accessToken || accessToken === "invalid") {
+    console.log("code in if statement app.js" + code);
     accessToken = UseAuth(code);
   }
   let playing = useSelector((state) => state.PlayingReducer.playing);

@@ -14,7 +14,7 @@ function Router() {
   console.log("userId in Router.js: " + userId);
   console.log("accessToken in Router: " + accessToken);
 
-  if (accessToken && accessToken !== "invalid") {
+  if (accessToken) {
     return (
       <HashRouter>
         <Switch>
