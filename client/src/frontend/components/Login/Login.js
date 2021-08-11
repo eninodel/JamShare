@@ -36,8 +36,6 @@ function Login() {
           }}
         >
           Continue as a guest
-          <br />
-          (Limited experience)
         </a>
       </div>
       {showAlert()}
