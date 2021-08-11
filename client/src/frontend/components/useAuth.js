@@ -13,16 +13,14 @@ export default function UseAuth(code) {
     axios
       .post("/api/login", { code })
       .then((res) => {
-        console.log("useAuth /login response: " + res.data);
-        console.log("useAuth /login response: " + res.status);
         Cookies.set("accessToken", res.data.accessToken, { expires: 1 / 24 });
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
       })
       .catch((err) => {
+        Cookies.set("accessToken", "invalid", { expires: 1 / 24 });
         window.location = "/";
-        console.log("error in useAuth: " + err);
       });
   }, [code]);
 

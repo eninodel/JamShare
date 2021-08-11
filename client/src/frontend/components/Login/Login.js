@@ -10,7 +10,7 @@ function Login() {
   const accesssToken = Cookies.get("accessToken");
 
   const showAlert = () => {
-    if (accesssToken && accesssToken !== "guest") {
+    if (accesssToken === "invalid") {
       alert.show(
         "To login with Spotify please contact Edwin Nino Delgado. For now please login as a guest",
         {
