@@ -43,17 +43,20 @@ function App() {
 
   useEffect(() => {
     if (!accessToken || accessToken === "guest") return;
-    spotifyAPI.setAccessToken(accessToken);
-    spotifyAPI
-      .getMe()
-      .then((data) => {
-        // console.log("first then: " + data);
-        // console.log("first then: " + data.body);
+    axios
+      .get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
       })
-      .catch((error) => {
-        Cookies.remove("accessToken");
-        window.location.href = "/";
+      .then((data) => console.log(data.body))
+      .catch((err) => {
+        if (err.response.status === 403) {
+          Cookies.remove("accessToken");
+          window.location.href = "/";
+        }
       });
+    spotifyAPI.setAccessToken(accessToken);
     spotifyAPI
       .getMe()
       .then((res) => {
